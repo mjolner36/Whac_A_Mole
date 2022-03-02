@@ -22,6 +22,7 @@ class GameOverActivity : AppCompatActivity() {
         var score = intent.getIntExtra("score", 0)
         recordTextView?.text = score.toString()
 
+        //возращение на главнок меню при нажатие кнопки назад
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val intent:Intent = Intent(this@GameOverActivity,MainActivity::class.java)
@@ -29,6 +30,7 @@ class GameOverActivity : AppCompatActivity() {
                 finishAffinity()
             }
         }
+        //сохрание нового рекорда
         var prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
         if (score > prefs.getInt(APP_TOP_SCORE, 0) ) {
             val editor = prefs.edit()
@@ -38,12 +40,13 @@ class GameOverActivity : AppCompatActivity() {
 
     }
 
+    //нажатие на кнопку replay
     fun restartGame(view: View){
         val intent:Intent = Intent(this@GameOverActivity,GameActivity::class.java)
         startActivity(intent)
         finishAffinity()
     }
-
+    //нажатие на кнопку в меня
     fun goToMenu(view:View){
         val intent:Intent = Intent(this@GameOverActivity,MainActivity::class.java)
         startActivity(intent)

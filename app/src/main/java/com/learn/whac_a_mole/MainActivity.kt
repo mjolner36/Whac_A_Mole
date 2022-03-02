@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     var mediaPlayer:MediaPlayer? = null
     var valueOfScoreTextView:TextView? = null
     private val APP_TOP_SCORE = "score"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,10 +26,10 @@ class MainActivity : AppCompatActivity() {
         valueOfScoreTextView?.text =  getSharedPreferences("settings", Context.MODE_PRIVATE).getInt(APP_TOP_SCORE, 0).toString()
     }
 
-    private fun playButtonPress() {
+    private fun playButtonPress() {  // звук нажатия на кнопку play
         mediaPlayer?.start()
     }
-
+    //запуск игры с переходм на следующие Activity
     fun onClick(view: View){
         playButtonPress()
         val intent = Intent(this@MainActivity, GameActivity::class.java)
